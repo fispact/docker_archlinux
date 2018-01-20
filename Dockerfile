@@ -20,12 +20,11 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 ENV RUN_SCRIPT ~/.bashrc
 
 # Install additional packages
-RUN pacman -Syu && \
-    pacman -S make git cmake less rsync doxygen cpio nano bash bash-completion && \
-    pacman -S python3 gcc gcc-gfortran && \
-    # pip3 packages
-    pip3 install --upgrade pip && \
-    pip3 install pytest pytest-xdist pypact
+RUN pacman -Syu --noconfirm
+RUN pacman -S --noconfirm make git cmake less rsync doxygen cpio nano bash bash-completion
+RUN pacman -S --noconfirm gcc gcc-fortran python3 python-pip
+RUN pip3 install --upgrade pip
+RUN pip3 install pytest pytest-xdist pypact
 
 WORKDIR /
 
